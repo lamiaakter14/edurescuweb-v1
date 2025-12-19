@@ -8,13 +8,13 @@ export default function Home() {
         <p className="text-gray-600 mb-8">24/7 Academic Emergency Platform</p>
         <div className="flex gap-4 justify-center">
           <Link
-            href="/student/dashboard"
+            href="/dashboard"
             className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
             Student Portal
           </Link>
           <Link
-            href="/expert/inbox"
+            href="/inbox"
             className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700"
           >
             Expert Portal

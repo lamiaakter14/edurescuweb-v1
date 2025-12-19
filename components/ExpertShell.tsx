@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Inbox", href: "/expert/inbox" },
+  { label: "Inbox", href: "/inbox" },
 ];
 
 export default function ExpertShell({

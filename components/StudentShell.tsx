@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Dashboard", href: "/student/dashboard" },
-  { label: "AI Assistant", href: "/student/assistant" },
-  { label: "Emergency Help", href: "/student/emergency" },
-  { label: "Resources", href: "/student/resources" },
-  { label: "Notes", href: "/student/notes" },
+  { label: "Dashboard", href: "/dashboard" },
+  { label: "AI Assistant", href: "/assistant" },
+  { label: "Emergency Help", href: "/emergency" },
+  { label: "Resources", href: "/resources" },
+  { label: "Notes", href: "/notes" },
 ];
 
 export default function StudentShell({
