@@ -23,3 +23,7 @@ This repo is wired to work with 4 core AI “roles”, stored in `/prompts`:
 
 Keep context for each role in its own chat so Architect ≠ Frontend ≠ Backend.
 Rule: One role = one chat. Never mix Architect, Frontend, Backend in the same conversation.
+
+Copilot usage:
+- Chat → daily coding, small changes, debugging.
+- Agent → well-defined repo-wide tasks that should end in a PR.
