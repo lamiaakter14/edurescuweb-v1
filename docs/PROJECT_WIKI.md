@@ -730,5 +730,61 @@ First task:
 Review the Project Wiki schema + API list and propose the first 3 API routes
 we should implement for a working chat + emergency flow.
 
+## EduRescue v1 Development OS – 4 Chats + 1 Agent (Locked)
+
+We build EduRescue v1 using four thinking chats and one coding agent.
+
+### Core idea
+- **Chat = Brain** → decides and designs.
+- **Agent = Hands** → writes code and opens PRs.
+
+### 4 Chats (Brain)
+
+1. **Chat-01 – Founder HQ**
+   - Scope lock, priority, “next step”.
+   - Decides who does what and when to merge PRs.
+   - Output: today’s plan + exact Agent ticket text.
+
+2. **Chat-02 – Architect**
+   - Designs Prisma schema and API contracts.
+   - Output: final schema + list of endpoints (copy-paste spec).
+
+3. **Chat-03 – Frontend**
+   - Turns Figma/product ideas into routes, layouts, components, and UI state.
+   - Output: page/layout/component list + UI plan (props, states, interactions).
+
+4. **Chat-04 – Backend**
+   - Plans API route implementation, handles debugging, and prepares deploy checklists.
+   - Output: file-by-file code plan + edge cases and error handling notes.
+
+### 1 Agent (Hands)
+
+- **GitHub Copilot Agent**
+  - Implements the specs from the 4 Chats.
+  - Writes code, edits files, and opens pull requests.
+  - Rule: always receives **narrow & exact tasks**:
+    - explicit file paths,
+    - clear constraints,
+    - acceptance criteria.
+  - Never decides product scope or architecture by itself.
+
+### Golden Loop
+
+1. **Chat decides**  
+   - Chat-01/02/03/04 produce clear specs and acceptance criteria.
+
+2. **Agent implements (PR)**  
+   - Copilot Agent reads the spec and creates a focused PR.
+
+3. **Chat reviews**  
+   - Chats help review the PR, request changes, and decide when to merge.
+
+### Default Order for a Full Feature
+
+For a typical feature we follow:
+
+> Chat-01 → Chat-02 → Agent → Chat-03 → Agent → Chat-04 → Agent → Chat-01 (review/merge)
+
+We only include the chats that are actually needed for the current feature (MVP-first).
 
 End of Portable Project Memory Wiki
