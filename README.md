@@ -22,3 +22,4 @@ This repo is wired to work with 4 core AI “roles”, stored in `/prompts`:
    - Backend: “Review my `schema.prisma` and emergency API route and fix issues.”
 
 Keep context for each role in its own chat so Architect ≠ Frontend ≠ Backend.
+Rule: One role = one chat. Never mix Architect, Frontend, Backend in the same conversation.
