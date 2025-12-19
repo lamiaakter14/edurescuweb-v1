@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  EXPERT
+  ADMIN
+}
+
+enum SenderRole {
+  STUDENT
+  AI
+  EXPERT
+  SYSTEM
+}
+
+enum TicketStatus {
+  REQUESTED
+  ASSIGNED
+  IN_REVIEW
+  VERIFIED
+  CLOSED
+}
+
+enum ConversationStatus {
+  ACTIVE
+  CLOSED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String? 
+  email     String   @unique
+  role      Role     @default(STUDENT)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  conversations    Conversation[]    @relation("StudentConversations")
+  ticketsAsStudent EmergencyTicket[] @relation("StudentTickets")
+  ticketsAsExpert  EmergencyTicket[] @relation("ExpertTickets")
+  notes            Note[]
+  messages         Message[]
+}
+
+model Conversation {
+  id        String   @id @default(cuid())
+  studentId String
+  status    ConversationStatus @default(ACTIVE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  student  User       @relation("StudentConversations", fields: [studentId], references:  [id], onDelete:  Cascade)
+  messages Message[]
+  ticket   EmergencyTicket? 
+
+  @@index([studentId, updatedAt])
+}
+
+model Message {
+  id             String     @id @default(cuid())
+  conversationId String
+  senderRole     SenderRole
+  senderId       String? 
+  text           String
+  attachmentUrl  String? 
+
+  createdAt      DateTime   @default(now())
+
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender         User?        @relation(fields: [senderId], references:  [id], onDelete: SetNull)
+
+  @@index([conversationId, createdAt])
+}
+
+model EmergencyTicket {
+  id             String       @id @default(cuid())
+  conversationId String       @unique
+  studentId      String
+  expertId       String? 
+
+  status         TicketStatus @default(REQUESTED)
+
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  verifiedAt     DateTime? 
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  student      User        @relation("StudentTickets", fields: [studentId], references: [id], onDelete: Cascade)
+  expert       User?       @relation("ExpertTickets", fields: [expertId], references:  [id], onDelete: SetNull)
+
+  @@index([studentId, updatedAt])
+  @@index([expertId, status, updatedAt])
+}
+
+model Note {
+  id             String   @id @default(cuid())
+  studentId      String
+  title          String? 
+  content        String
+  conversationId String? 
+  messageId      String?
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@index([studentId, updatedAt])
+  @@index([conversationId])
+}
+
+model Resource {
+  id          String   @id @default(cuid())
+  title       String
+  description String? 
+  url         String? 
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
