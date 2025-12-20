@@ -1,19 +1,19 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: "EduRescue v1",
-  description: "24/7 Academic Emergency Platform for Bangladesh",
-};
+  title: 'EduRescue - 24/7 Academic Emergency Platform',
+  description: 'Instant AI-powered academic help for Bangladeshi students',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body>{children}</body>
     </html>
-  );
+  )
 }
