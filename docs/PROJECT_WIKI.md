@@ -768,6 +768,45 @@ We build EduRescue v1 using four thinking chats and one coding agent.
     - acceptance criteria.
   - Never decides product scope or architecture by itself.
 
+### Workflow Rules (Locked)
+
+**Critical Separation of Concerns:**
+
+1. **The 4 Chats (Brain) Do NOT Write Implementation Code**
+   - Chat-01, Chat-02, Chat-03, Chat-04 are strictly for thinking, planning, and designing.
+   - They produce:
+     - Specifications and contracts
+     - Acceptance criteria and checklists
+     - File lists and build order
+     - Architecture decisions and API designs
+   - They NEVER write actual code files or submit pull requests.
+
+2. **The Agent (Hands) Is the ONLY Code Writer**
+   - GitHub Copilot Agent is the exclusive executor that:
+     - Writes implementation code
+     - Edits files in the repository
+     - Opens and manages pull requests
+   - The Agent must receive narrow, well-defined tasks from Chat-01.
+
+3. **Every Coding Change Starts from Chat-01**
+   - Chat-01 (Founder HQ) produces an **Agent Task** for each coding change.
+   - The Agent Task must include:
+     - Exact file paths to modify
+     - Clear acceptance criteria
+     - Specific constraints and requirements
+   - This ensures scope control and prevents scope creep.
+
+4. **Conversion-First Policy**
+   - Before building new features, align existing repository structure with this Wiki.
+   - If repo structure diverges from Wiki, conversion tasks take priority.
+   - Chat-01 decides when conversion is needed and creates Agent Tasks accordingly.
+
+**Why This Matters:**
+- **Prevents confusion:** Clear roles prevent mixed responsibilities.
+- **Maintains quality:** Specs are reviewed before implementation.
+- **Enables collaboration:** Multiple people can use different chats without conflicts.
+- **Scales the team:** New contributors understand boundaries immediately.
+
 ### Golden Loop
 
 1. **Chat decides**  
